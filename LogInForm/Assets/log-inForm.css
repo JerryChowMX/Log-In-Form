@@ -1,0 +1,205 @@
+*{
+  font-family: poppins, serif;
+}
+
+.fullContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  background-image: url(./Images/Log-in_chef.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+.elementsContainer{
+  background-color: white;
+  opacity: 0.75;
+  width: 500px;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: all ease 0.9s;
+}
+
+.elementsContainer:hover{
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5 );
+}
+
+.formContainer{
+  width: 70%;
+  padding: 15px;
+  max-height: fit-content;
+}
+
+.formContainer h1{
+  font-weight: 800;
+}
+
+.formContentContainer{
+  display: flex;
+  gap: 25px;
+  flex-direction: column;
+}
+
+.formContentContainer button{
+  background-color: black;
+  color: white;
+  padding: 8px;
+  border: none;
+  font-size: medium;
+  margin-bottom: 10px;
+  transition: all ease 0.9s;
+}
+
+.formContentContainer button:hover{
+  cursor: pointer;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  background-color: white;
+  color: black;
+}
+
+.emailContainer{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.emailContainer label{
+  font-size: larger;
+  font-weight: 400;
+}
+
+.emailContainer input{
+  padding: 10px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: all ease 0.6s;
+}
+
+.emailContainer input::placeholder{
+  color: white;
+}
+
+.emailContainer input:focus{
+  outline: none;
+}
+
+.emailContainer input:hover{
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  background-color: grey;
+}
+
+.passwordContainer{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.passwordContainer label{
+  font-size: larger;
+  font-weight: 400;
+}
+
+.passwordContainer input{
+  padding: 10px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: all ease 0.6s;
+}
+
+.passwordContainer input::placeholder{
+  color: white;
+}
+
+.passwordContainer input:focus{
+  outline: none;
+}
+
+.passwordContainer input:hover{
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  background-color: grey;
+}
+
+.rememberMeContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+.rememberMeContainer label {
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    display: inline-block;
+    /* Additional styling as needed */
+}
+
+.rememberMeContainer label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 25px;
+    height: 25px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.25);
+    /* Additional styling as needed */
+}
+
+input[type="checkbox"]:checked + label::before {
+    background-color: rgba(0, 0, 0, 0.842);
+    content: '✔'; 
+    color: white;
+    text-align: center;
+    line-height: 25px; /* Align the checkmark vertically */
+}
+
+/* Nav Bar */
+
+/* General styles */
+body, ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* Sticky Navbar styles */
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+    position: sticky; /* Sticky position */
+    top: 0; /* Position the navbar at the top of the page */
+    z-index: 1000; /* Ensure navbar is on top of other content */
+}
+
+.nav-list {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-list li {
+    float: left;
+}
+
+.nav-list li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+.nav-list li a:hover {
+    background-color: #111;
+}
