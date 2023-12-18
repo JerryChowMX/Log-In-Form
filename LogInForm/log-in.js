@@ -1,41 +1,102 @@
-document.addEventListener('DOMContentLoaded', function () {
-  // Function to validate email format
-  function validateEmail(email) {
-    var re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    return re.test(String(email).toLowerCase());
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById("form");
+  const username = document.getElementById("username");
+  const email = document.getElementById("email");
+  const password = document.getElementById("password");
+  const validatePassword = document.getElementById("validatePassword");
+  const rememberMeCheckbox = document.getElementById("keepLogIn");
+
+  // Load the stored username if "Remember Me" was checked
+  if (localStorage.getItem('rememberMe') === 'true') {
+    username.value = localStorage.getItem('username');
+    email.value = localStorage.getItem('email');
+    password.value = localStorage.getItem('password')
+    rememberMeCheckbox.checked = true;
   }
 
-  // Function to handle form submission
-  function handleFormSubmit(event) {
-    // Prevent the default form submission behavior
-    event.preventDefault();
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-    // Select the email and password input fields
-    var email = document.querySelector('.emailContainer input').value;
-    var password = document.querySelector('.passwordContainer input').value;
+    // Check the form inputs
+    checkInputs();
 
-    // Basic validation
-    if (!email || !password) {
-      alert('Please enter both email and password.');
-      return;
+    // Handle "Remember Me" feature
+    if (rememberMeCheckbox.checked) {
+      localStorage.setItem('username', username.value);
+      localStorage.setItem('rememberMe', 'true');
+    } else {
+      localStorage.removeItem('username');
+      localStorage.removeItem('rememberMe');
     }
 
-    if (!validateEmail(email)) {
-      alert('Please enter a valid email address.');
-      return;
+    // Redirect to another page if form is valid
+    if (isFormValid()) {
+      window.location.href = 'https://mx.linkedin.com/in/gerardo-garza-castilla-a5440419b'; 
+    }
+  });
+
+  // Check inputs function
+  function checkInputs() {
+    const usernameValue = username.value.trim();
+    const emailValue = email.value.trim();
+    const passwordValue = password.value.trim();
+    const validatePasswordValue = validatePassword.value.trim();
+
+    if (usernameValue === "") {
+      setErrorFor(username, "Username cannot be blank");
+    } else {
+      setSuccessFor(username);
     }
 
-    // Here you can add your code to handle the sign-in logic, 
-    // like sending a request to your server
-    console.log('Email:', email, 'Password:', password);
-    alert('Sign-in successful!');  // Placeholder for demonstration
+    if (emailValue === "") {
+      setErrorFor(email, "Email cannot be blank");
+    } else if (!isEmail(emailValue)) {
+      setErrorFor(email, "Email is not valid");
+    } else {
+      setSuccessFor(email);
+    }
 
-    // Clear the form fields
-    document.querySelector('.emailContainer input').value = '';
-    document.querySelector('.passwordContainer input').value = '';
+    if (passwordValue === "") {
+      setErrorFor(password, "Password cannot be blank");
+    } else {
+      setSuccessFor(password);
+    }
+
+    if (validatePasswordValue === "") {
+      setErrorFor(validatePassword, "Password check cannot be blank");
+    } else if (passwordValue !== validatePasswordValue) {
+      setErrorFor(validatePassword, "Passwords do not match!");
+    } else {
+      setSuccessFor(validatePassword);
+    }
   }
 
-  // Add event listener to the form
-  var form = document.querySelector('.formContentContainer');
-  form.addEventListener('submit', handleFormSubmit);
+  // Set error function
+  function setErrorFor(input, message) {
+    const formControlContainer = input.parentElement;
+    const small = formControlContainer.querySelector("small");
+
+    small.innerText = message;
+    formControlContainer.classList.add('error');
+    formControlContainer.classList.remove('success');
+  }
+
+  // Set success function
+  function setSuccessFor(input) {
+    const formControlContainer = input.parentElement;
+
+    formControlContainer.classList.add('success');
+    formControlContainer.classList.remove('error');
+  }
+
+  // Email validation function
+  function isEmail(email) {
+    return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+  }
+
+  // Function to check if all inputs are valid
+  function isFormValid() {
+    return !Array.from(form.querySelectorAll('.formControlContainer'))
+      .some(container => container.classList.contains('error'));
+  }
 });

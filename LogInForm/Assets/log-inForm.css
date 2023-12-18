@@ -2,6 +2,11 @@
   font-family: poppins, serif;
 }
 
+body, ul {
+    margin: 0;
+    padding: 0;
+}
+
 .fullContainer{
   display: flex;
   justify-content: center;
@@ -64,67 +69,38 @@
   color: black;
 }
 
-.emailContainer{
+.formControlContainer{
   display: flex;
   flex-direction: column;
   gap: 5px;
+  position: relative;
 }
 
-.emailContainer label{
+.formControlContainer label{
   font-size: larger;
   font-weight: 400;
 }
 
-.emailContainer input{
+.formControlContainer input{
   padding: 10px;
   border: none;
   background-color: rgba(0, 0, 0, 0.2);
   transition: all ease 0.6s;
 }
 
-.emailContainer input::placeholder{
+.formControlContainer input::placeholder{
   color: white;
 }
 
-.emailContainer input:focus{
+.formControlContainer input:focus{
   outline: none;
 }
 
-.emailContainer input:hover{
+.formControlContainer input:hover{
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   background-color: grey;
 }
 
-.passwordContainer{
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.passwordContainer label{
-  font-size: larger;
-  font-weight: 400;
-}
-
-.passwordContainer input{
-  padding: 10px;
-  border: none;
-  background-color: rgba(0, 0, 0, 0.2);
-  transition: all ease 0.6s;
-}
-
-.passwordContainer input::placeholder{
-  color: white;
-}
-
-.passwordContainer input:focus{
-  outline: none;
-}
-
-.passwordContainer input:hover{
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  background-color: grey;
-}
 
 .rememberMeContainer{
   display: flex;
@@ -141,7 +117,6 @@ input[type="checkbox"] {
     padding-left: 35px;
     cursor: pointer;
     display: inline-block;
-    /* Additional styling as needed */
 }
 
 .rememberMeContainer label::before {
@@ -152,8 +127,7 @@ input[type="checkbox"] {
     width: 25px;
     height: 25px;
     border: none;
-    background-color: rgba(0, 0, 0, 0.25);
-    /* Additional styling as needed */
+    background-color: rgba(0, 0, 0, 0.24);
 }
 
 input[type="checkbox"]:checked + label::before {
@@ -161,24 +135,52 @@ input[type="checkbox"]:checked + label::before {
     content: '✔'; 
     color: white;
     text-align: center;
-    line-height: 25px; /* Align the checkmark vertically */
+    line-height: 25px; 
+}
+
+/* Error Messages Styling */
+
+.formControlContainer small {
+  color: red;
+  font-size: 12px; 
+  margin-top: 2.5px; 
+  height: 0; 
+  overflow: hidden; 
+  visibility: hidden; 
+  opacity: 0; 
+  transition: visibility 0s, opacity 0.6s linear, height 0.6s linear; 
+}
+
+.formControlContainer.error small {
+  visibility: visible; 
+  opacity: 1; 
+  height: auto; 
+}
+
+.formControlContainer.error input {
+  background-color: rgba(197, 197, 197, 0.404);
+}
+
+.formControlContainer.error input::placeholder {
+  color: red; 
+}
+
+.formControlContainer.success input {
+  color: green;
 }
 
 /* Nav Bar */
 
-/* General styles */
-body, ul {
-    margin: 0;
-    padding: 0;
-}
-
-/* Sticky Navbar styles */
 .navbar {
-    background-color: #333;
+    background-color: white;
     overflow: hidden;
     position: sticky; /* Sticky position */
     top: 0; /* Position the navbar at the top of the page */
     z-index: 1000; /* Ensure navbar is on top of other content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
 }
 
 .nav-list {
@@ -193,22 +195,28 @@ body, ul {
 
 .nav-list li a {
     display: block;
-    color: white;
+    color: black;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
 
-/* Change the link color to #111 (black) on hover */
+/* Change the link color on hover */
 .nav-list li a:hover {
-    background-color: #111;
+    background-color: black;
+    color: white;
+}
+
+.navbar img{
+  width: 200px;
+  height: 100px;
 }
 
 /* Footer */
 
 footer {
-    background-color: #333;
-    color: white;
+    background-color: white;
+    color: black;
     padding: 20px 0;
     font-family: 'Poppins', sans-serif;
 }
@@ -221,7 +229,7 @@ footer {
 }
 
 .footer-section h3 {
-    color: #fff;
+    color: black;
     margin-bottom: 10px;
 }
 
@@ -232,7 +240,7 @@ footer {
 }
 
 .footer-section a:hover {
-    color: #fff;
+    color: black;
 }
 
 .footer-bottom {
